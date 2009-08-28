@@ -6,25 +6,28 @@
 %define	pdir	Net
 %define	pnam	Libdnet
 Summary:	Net::Libdnet - Perl interface to libdnet
-#Summary(pl.UTF-8):	
+Summary(pl.UTF-8):	Net::Libdnet - Perlowy interfejs do libdnet
 Name:		perl-Net-Libdnet
-Version:	0.01
+Version:	0.92
 Release:	1
-License:	BSD-like
+License:	BSD
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Net/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	cec04f6a07cf9e9ec90077c7f3970ffc
+# Source0-md5:	3ae5ac04867b615ee20ec9ee281a31fd
 URL:		http://search.cpan.org/dist/Net-Libdnet/
 BuildRequires:	libdnet-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+%if %{with tests}
+BuildRequires:	perl(Class::Gomor)
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Net::Libdnet - Perl interface to libdnet.
 
-# %description -l pl.UTF-8
-# TODO
+%description -l pl.UTF-8
+Net::Libdnet - Perlowy interfejs do libdnet
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
@@ -41,8 +44,11 @@ Net::Libdnet - Perl interface to libdnet.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} pure_install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -52,6 +58,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc Changes README
 %{perl_vendorarch}/Net/*.pm
 %dir %{perl_vendorarch}/auto/Net/Libdnet
-%{perl_vendorarch}/auto/Net/Libdnet/*.ix
+%{perl_vendorarch}/auto/Net/Libdnet/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Net/Libdnet/*.so
+%{_bindir}/dnet.pl
+%dir %{perl_vendorarch}/Net/Libdnet
+%{perl_vendorarch}/Net/Libdnet/*.pm
+%dir %{perl_vendorarch}/Net/Libdnet/Entry
+%{perl_vendorarch}/Net/Libdnet/Entry/Intf.pm
 %{_mandir}/man3/*
+%{_examplesdir}/%{name}-%{version}
