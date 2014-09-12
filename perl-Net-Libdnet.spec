@@ -58,7 +58,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc Changes README
 %{perl_vendorarch}/Net/*.pm
 %dir %{perl_vendorarch}/auto/Net/Libdnet
-%{perl_vendorarch}/auto/Net/Libdnet/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Net/Libdnet/*.so
 %{_bindir}/dnet.pl
 %dir %{perl_vendorarch}/Net/Libdnet
