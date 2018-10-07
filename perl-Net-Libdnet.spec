@@ -8,12 +8,12 @@
 Summary:	Net::Libdnet - Perl interface to libdnet
 Summary(pl.UTF-8):	Net::Libdnet - Perlowy interfejs do libdnet
 Name:		perl-Net-Libdnet
-Version:	0.96
+Version:	0.99
 Release:	1
 License:	BSD
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Net/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	e359aa9ecfe76c5f3c2e8c4005e8940a
+# Source0-md5:	c838677154b730f47f9a5c6b679fe296
 URL:		http://search.cpan.org/dist/Net-Libdnet/
 BuildRequires:	libdnet-devel
 BuildRequires:	perl-devel >= 1:5.8.0
